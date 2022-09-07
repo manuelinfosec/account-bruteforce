@@ -10,14 +10,14 @@ pwds = [line.strip() for line in open("project-files\wordlist.txt")]
 for pwd in tqdm(pwds, f"Decrypting PDF: "):
     try:
         # attempt to open pdf file with password
-        with pikepdf.open("project-files/protected-file.pdf", password=pwd) as pdf:
+        with pikepdf.open("project-files/protected-file.pdf", password=pwd+"1") as pdf:
             # password decryption success
-            print("[+] Password foiund: ", pwd)
+            print("\n[+] Password found: ", pwd+"1")
             break
     # in the case of an incorrect password
-    except:
+    except Exception as e:
         # continue iteration
         continue
-    else:
-        print("[-] Password was not found")
-        print("Exiting...")
+else:
+    print("[-] Password was not found")
+    print("Exiting...")
